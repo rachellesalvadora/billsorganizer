@@ -1,0 +1,49 @@
+body {
+	font-family: 'Muli', sans-serif;
+}
+
+.span4 {
+width: 272px;
+margin-top: 69px;
+}
+
+.bills-title {
+text-align: center;
+margin-top: 50px;
+margin-bottom: 20px;
+color: steelblue;
+font-size: -webkit-xxx-large;
+text-shadow: 2px 4px 15px #A9A9A9;
+}
+
+.container {
+width: 1020px;
+}
+
+.row {
+	margin: 0;
+	float: left;
+}
+
+.row2 {
+float: right;
+}
+
+.button-container {
+width: 700px;
+margin: 0 auto;
+}
+
+.btn-lg, .btn-group-lg>.btn {
+padding: 18px 65px;
+font-size: 18px;
+line-height: 1.33;
+border-radius: 0px;
+box-shadow: 2px 4px 15px #A9A9A9;
+}
+
+.bills-title {
+text-align: center;
+margin-top: 50px;
+margin-bottom: 20px;
+}
