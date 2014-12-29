@@ -47,3 +47,22 @@ text-align: center;
 margin-top: 50px;
 margin-bottom: 20px;
 }
+
+/***************
+Paid
+***************/
+
+.total-paid {
+width: 500px;
+margin: 21px auto 0px auto;
+border: 1px solid;
+padding: 6px 30px;
+}
+
+.home-button {
+position: fixed;
+}
+
+.edit-button {
+width: 100px;
+}
