@@ -10,6 +10,7 @@ $queryheading = 'select name from company where idcompany = '.$companyid.'';
 
 
 $result = mysql_query($query,$mysql);
+$result2 = mysql_query($query,$mysql);
 $resultheading = mysql_query($queryheading,$mysql);
 $resulttotalunpaid = mysql_query($querytotalunpaid,$mysql);
 $resulttotalpaid = mysql_query($querytotalpaid,$mysql);
@@ -57,6 +58,8 @@ $resulttotalpaid = mysql_query($querytotalpaid,$mysql);
     }
     ?></h1>
 
+    
+
     <div class="table-responsive">
       <table class="table table-hover">
         <thead>
@@ -69,10 +72,14 @@ $resulttotalpaid = mysql_query($querytotalpaid,$mysql);
         </thead>
         <tbody>
             <?php
-            while($row = mysql_fetch_assoc($result)) {
+    while ($row = mysql_fetch_assoc($result)) {
+        ?>
+            <?php
+                if ($row['paid'] == 0) {
                 ?>
                 <tr>
                     <td><?php 
+                        
                         $mysqldate = $row['duedate'];
                         $datephp = strtotime($mysqldate);
                         echo date("m/d/y", $datephp);
@@ -80,10 +87,47 @@ $resulttotalpaid = mysql_query($querytotalpaid,$mysql);
                         <td><?php echo $row['type']; ?></td>
                         <td><?php echo $row['amount']; ?></td>
                         <td class="edit-button"><button class="btn btn-default" type="submit">Button</button></td>
-                        <td><?php if ($row['paid'] == 1) {?> <span class="list-group-item list-group-item-success">PAID</span> <?php } else { ?> <span class="list-group-item list-group-item-danger">UNPAID</span> <?php } ?>
-                        </td>
+                        
                     </tr>
-                    <?php } ?>
+                    <?php } }?>
                 </tbody>
             </table>
         </div>
+
+
+        <div class="table-responsive">
+      <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Day</th>
+                <th>Type</th>
+                <th>Amount</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+    while ($row3 = mysql_fetch_assoc($result2)) {
+        ?>
+            <?php
+            if ($row3['paid'] == 1) {
+                ?>
+                <tr>
+                    <td>
+                        <?php 
+                        $mysqldate = $row3['duedate'];
+                        $datephp = strtotime($mysqldate);
+                        echo date("m/d/y", $datephp);
+                        ?></td>
+                        <td><?php echo $row3['type']; ?></td>
+                        <td><?php echo $row3['amount']; ?></td>
+                        <td class="edit-button"><button class="btn btn-default" type="submit">Button</button></td>
+                        
+                    </tr>
+                    <?php } } ?>
+                </tbody>
+            </table>
+        </div>
+
+
+
