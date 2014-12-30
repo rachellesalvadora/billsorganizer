@@ -66,3 +66,66 @@ position: fixed;
 .edit-button {
 width: 100px;
 }
+
+select {
+width: 286px;
+font-family: inherit;
+font-size: 16px;
+line-height: inherit;
+}
+
+.company-form {
+width: 600px;
+margin: 50px auto;
+border: 1px solid;
+padding-top: 20px;
+}
+
+label.col-sm-5.control-label {
+padding-top: 3px;
+}
+
+button.btn.btn-default {
+width: 200px;
+}
+
+.col-sm-offset-1.col-sm-5 {
+margin: 20px auto 0 auto;
+}
+
+.address-input {
+width: 268px;
+height: 70px;
+}
+
+
+.calculate-form {
+width: 600px;
+margin: 50px auto;
+border: 1px solid;
+padding-top: 20px;
+}
+
+.front-button {
+width: 272px;
+}
+
+.monthly-button {
+padding: 10px 20px 10px 20px;
+width: 190px;
+font-size: 15px;
+}
+
+.row-months {
+position: fixed;
+margin-top: 62px;
+}
+
+
+.monthly-total-paid {
+float: right;
+}
+
+.monthly-total-unpaid {
+float: left;
+}
