@@ -6,7 +6,9 @@
 $selectcompany = "select * from company";
 $resultcompany = mysql_query($selectcompany,$mysql);
 
+
 $success = 0;
+$success = $_GET['success'];
 
 ?>
 <meta charset="utf-8">
@@ -31,11 +33,11 @@ $success = 0;
       <a href="index.html"><button type="button" class="btn btn-primary btn-lg home-button">HOME</button></a>
       <div class="container">
         <h1 class="bills-title">Company</h1>
-        <?php if ($success = 1) { ?>
+        <?php if ($success == 1) { ?>
         <div class="company-content alert alert-success" role="alert">Successfully added!</div>
         <?php } ?>
           <div class="company-content">
-            <form class="form-horizontal" >
+            <form class="form-horizontal" method="post" action="companylist.php" >
               <div class="form-group">
                 <label for="company-name" class="col-sm-5 control-label">Company Name:</label>
 
@@ -43,11 +45,11 @@ $success = 0;
                   <?php 
 
                   ?>
-                  <select name="company-name" class="select-company-name">
+                  <select name="companyid" class="select-company-name">
                    <?php 
                    while ($row = mysql_fetch_assoc($resultcompany)) {
                     ?>
-                    <option>
+                    <option value="<?php echo $row['idcompany']; ?>">
 
                       <?php
                       echo $row['name'];
@@ -107,16 +109,11 @@ $success = 0;
               </div>
 
               <div class="form-group">
-                <label for="type" class="col-sm-5 control-label">Type:</label>
+               
 
                 <div class="col-sm-6">
-                  <select name="type" class="input-company">
-                    <option>Milk</option>
-                    <option>Coffee</option>
-                    <option>Tea</option>
-                  </select>
+                
                 </div>
-
 
                 <div class="form-group">
                   <div class="col-sm-offset-1 col-sm-5">
@@ -125,9 +122,6 @@ $success = 0;
 
 
                 </form>
-
-
-
               </div>
 
 
