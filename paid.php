@@ -1,3 +1,21 @@
+<?php
+include_once('db.php');
+
+$companyid = $_POST['companyid'];
+
+$query = "select * from bill where paid = 1";
+$querytotalunpaid = "select sum(amount) AS Total from bill where paid = 0";
+$querytotalpaid = "select sum(amount) AS Total from bill where paid = 1";
+$queryheading = 'select name from company where idcompany = '.$companyid.'';
+
+
+$result = mysql_query($query,$mysql);
+$result2 = mysql_query($query,$mysql);
+$resultheading = mysql_query($queryheading,$mysql);
+$resulttotalunpaid = mysql_query($querytotalunpaid,$mysql);
+$resulttotalpaid = mysql_query($querytotalpaid,$mysql);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -23,7 +41,7 @@
   <a href="index.html"><button type="button" class="btn btn-primary btn-lg home-button">HOME</button></a>
     <div class="container">
     <div class="total-paid">
-    <h4>Total Paid Amount: <?php while($rowtotalpaid = mysql_fetch_assoc($resulttotalpaid)) { 
+    <h4>Total Paid Amount: $<?php while($rowtotalpaid = mysql_fetch_assoc($resulttotalpaid)) { 
 
            echo $rowtotalpaid['Total']; 
 
@@ -42,35 +60,25 @@
             <th>Amount</th>
         </tr>
     </thead>
-    <tbody>
-        <tr>
-            <td>01/12/2015</td>
-            <td>Tax</td>
-            <td>Gov.au</td>
-            <td>$200.00</td>
-            <td class="edit-button"><button class="btn btn-default" type="submit">Button</button></td>
-        </tr>
-        <tr>
-            <td>01/12/2015</td>
-            <td>Tax</td>
-            <td>Gov.au</td>
-            <td>$200.00</td>
-            <td class="edit-button"><button class="btn btn-default" type="submit">Button</button></td>
-        </tr>
-        <tr>
-            <td>01/12/2015</td>
-            <td>Tax</td>
-            <td>Gov.au</td>
-            <td>$200.00</td>
-            <td class="edit-button"><button class="btn btn-default" type="submit">Button</button></td>
-        </tr>
-        <tr>
-            <td>01/12/2015</td>
-            <td>Tax</td>
-            <td>Gov.au</td>
-            <td>$200.00</td>
-            <td class="edit-button"><button class="btn btn-default" type="submit">Button</button></td>
-        </tr>
+    <tbody> <?php
+                while ($row = mysql_fetch_assoc($result))) {
+                ?><?php
+                if ($row['paid'] == 0) {
+                ?>
+        	<tr>
+           
+            <td><?php 
+                        
+                        $mysqldate = $row['duedate'];
+                        $datephp = strtotime($mysqldate);
+                        echo date("m/d/y", $datephp);
+                        ?></td>
+                        <td><?php echo $row['type']; ?></td>
+                        <td><?php echo $row['amount']; ?></td>
+                        <td class="edit-button"><button class="btn btn-default edit-button-table" type="submit">Edit</button></td>
+                        
+                    </tr>
+                    <?php } } ?>
     </tbody>
   </table>
 </div>
@@ -83,4 +91,3 @@
     <script src="js/bootstrap.min.js"></script>
   </body>
 </html>
-	

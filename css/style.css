@@ -129,3 +129,8 @@ float: right;
 .monthly-total-unpaid {
 float: left;
 }
+
+button.btn.btn-default.edit-button-table {
+width: 80px;
+}
+

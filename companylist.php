@@ -59,7 +59,7 @@ $resulttotalpaid = mysql_query($querytotalpaid,$mysql);
     ?></h1>
 
     
-
+    <h3>Unpaid</h3>
     <div class="table-responsive">
       <table class="table table-hover">
         <thead>
@@ -67,7 +67,6 @@ $resulttotalpaid = mysql_query($querytotalpaid,$mysql);
                 <th>Day</th>
                 <th>Type</th>
                 <th>Amount</th>
-                <th>Status</th>
             </tr>
         </thead>
         <tbody>
@@ -86,7 +85,7 @@ $resulttotalpaid = mysql_query($querytotalpaid,$mysql);
                         ?></td>
                         <td><?php echo $row['type']; ?></td>
                         <td><?php echo $row['amount']; ?></td>
-                        <td class="edit-button"><button class="btn btn-default" type="submit">Button</button></td>
+                        <td class="edit-button"><button class="btn btn-default edit-button-table" type="submit">Edit</button></td>
                         
                     </tr>
                     <?php } }?>
@@ -94,15 +93,14 @@ $resulttotalpaid = mysql_query($querytotalpaid,$mysql);
             </table>
         </div>
 
-
+        <h3>Unpaid</h3>     
         <div class="table-responsive">
       <table class="table table-hover">
         <thead>
             <tr>
                 <th>Day</th>
                 <th>Type</th>
-                <th>Amount</th>
-                <th>Status</th>
+                <th>Amount</th> 
             </tr>
         </thead>
         <tbody>
@@ -121,7 +119,7 @@ $resulttotalpaid = mysql_query($querytotalpaid,$mysql);
                         ?></td>
                         <td><?php echo $row3['type']; ?></td>
                         <td><?php echo $row3['amount']; ?></td>
-                        <td class="edit-button"><button class="btn btn-default" type="submit">Button</button></td>
+                        <td class="edit-button"><button class="btn btn-default edit-button-table" type="submit">Edit</button></td>
                         
                     </tr>
                     <?php } } ?>
