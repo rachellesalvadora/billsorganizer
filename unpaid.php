@@ -1,14 +1,14 @@
 <?php
 include_once('db.php');
 //string
-$amount = 'SELECT sum(amount) AS Total FROM bill WHERE paid = 1';
+$amount = 'SELECT sum(amount) AS Total FROM bill WHERE paid = 0';
 
 //query
 $result = mysql_query($amount);
 
 //new query with all details
 
-$unpaid = 'SELECT * from bill JOIN company ON bill.`company_idcompany` = company.`idcompany` WHERE paid = 1';
+$unpaid = 'SELECT * from bill JOIN company ON bill.`company_idcompany` = company.`idcompany` WHERE paid = 0';
 $result2 = mysql_query($unpaid);
 
 
@@ -46,7 +46,7 @@ $result2 = mysql_query($unpaid);
 
         } ?></h4>
     </div>
-    <h1 class="bills-title paid-title">Paid</h1>
+    <h1 class="bills-title paid-title">Unpaid</h1>
 
     <div class="table-responsive">
   <table class="table table-hover">
