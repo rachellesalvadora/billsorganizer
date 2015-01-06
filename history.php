@@ -70,7 +70,7 @@ $result = mysql_query($query);
                     echo $row['amount']; ?>
                     </td>
                     <td>
-                     <?php if ($row['paid'] == '0') { 
+                     <?php if ($row['paid'] == '0') {
                       ?>Paid <?php } else { ?> 
                       Unpaid <?php } ?>
                       </td>
