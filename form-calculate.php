@@ -8,7 +8,7 @@ $selectcompany = "select * from company";
 $resultcompany = mysql_query($selectcompany,$mysql);
 
 $query = "SELECT * FROM bill";
-$result = mysql_fetch_assoc($query,$mysql);
+$result = mysql_query($query,$mysql);
 
 $success = 0;
 $success = $_GET['success'];
@@ -41,7 +41,7 @@ $success = $_GET['success'];
         <div class="form-group">
           <label for="startdate" class="col-sm-5 control-label">Start Date:</label>
         <div class="col-sm-6">
-          <input name="startdate" type="date" class="input-company"></input>
+          <input name="startdate" type="date" class="input-company" required></input>
         </div>
 
         </div>
@@ -49,7 +49,7 @@ $success = $_GET['success'];
         <div class="form-group">
           <label for="enddate" class="col-sm-5 control-label">End Date:</label>
         <div class="col-sm-6">
-          <input name="enddate" type="date" class="input-company"></input>
+          <input name="enddate" type="date" class="input-company" required></input>
         </div>
 
         </div>
@@ -61,9 +61,9 @@ $success = $_GET['success'];
                    <?php 
                    while ($row = mysql_fetch_assoc($resultcompany)) {
                     ?>
-                    <option value="<?php echo $row['idcompany']; ?>">
-
+                    <option value="<?php echo $row['paid']; ?>" required>
                       <?php
+                      if ($row)
                       echo $row['name'];
                       ?> 
                     </option>
@@ -71,27 +71,7 @@ $success = $_GET['success'];
                   </select>
         </div>
 
-        </div>
 
-        <div class="form-group">
-          <label for="paid/un" class="col-sm-5 control-label">Paid/Unpaid:</label>
-        <div class="col-sm-6">
-          <select name="paid" class="input-company">
-            <?php 
-                   while ($row3 = mysql_fetch_assoc($result)) { 
-
-                      if ($row3['paid'] == '0') { ?>
-                        <option value="<?php echo $row['paid'];
-                        echo "unpaid"; 
-                        }
-                        else  {
-                        echo "paid"; 
-                        } ?> ">
-                      
-                    </option>
-                    <?php } ?>
-          </select>
-        </div>
 
         <div class="form-group">
     <div class="col-sm-offset-1 col-sm-5">
