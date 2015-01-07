@@ -1,3 +1,19 @@
+
+<?php require_once('db.php');
+
+//MySQLi query
+//get all records from add_delete_record table
+
+$selectcompany = "select * from company";
+$resultcompany = mysql_query($selectcompany,$mysql);
+
+$query = "SELECT * FROM bill";
+$result = mysql_fetch_assoc($query,$mysql);
+
+$success = 0;
+$success = $_GET['success'];
+
+?>
 <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -41,11 +57,18 @@
         <div class="form-group">
           <label for="company" class="col-sm-5 control-label">Company:</label>
         <div class="col-sm-6">
-          <select name="company" class="input-company">
-            <option>Milk</option>
-            <option>Coffee</option>
-            <option>Tea</option>
-          </select>
+          <select name="companyid" class="select-company-name">
+                   <?php 
+                   while ($row = mysql_fetch_assoc($resultcompany)) {
+                    ?>
+                    <option value="<?php echo $row['idcompany']; ?>">
+
+                      <?php
+                      echo $row['name'];
+                      ?> 
+                    </option>
+                    <?php } ?>
+                  </select>
         </div>
 
         </div>
@@ -54,9 +77,19 @@
           <label for="paid/un" class="col-sm-5 control-label">Paid/Unpaid:</label>
         <div class="col-sm-6">
           <select name="paid" class="input-company">
-            <option>Milk</option>
-            <option>Coffee</option>
-            <option>Tea</option>
+            <?php 
+                   while ($row3 = mysql_fetch_assoc($result)) { 
+
+                      if ($row3['paid'] == '0') { ?>
+                        <option value="<?php echo $row['paid'];
+                        echo "unpaid"; 
+                        }
+                        else  {
+                        echo "paid"; 
+                        } ?> ">
+                      
+                    </option>
+                    <?php } ?>
           </select>
         </div>
 
