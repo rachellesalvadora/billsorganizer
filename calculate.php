@@ -1,5 +1,5 @@
 <?php
-include_once('db.php');
+include_once('includes.php');
 
 if (!empty($_POST)) {
 	Redirect('form-calculate.php', false);
