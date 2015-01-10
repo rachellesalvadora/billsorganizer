@@ -1,29 +1,32 @@
 <?php
 include_once('includes.php');
 
-if (!empty($_POST)) {
-	Redirect('form-calculate.php', false);
-}
-else {
 
-$companyid = $_POST['companyid'];
+echo $companyid = $_POST['companyid'];
 $startdate = $_POST['startdate'];
 $enddate = $_POST['enddate'];
 
-$date = "SELECT * from mytable where date between ".$startdate." and ".$endate."";
-$query = "SELECT * from bill where ('company_idcompany') = (".$companyid.")";
-$querytotalpaid = "SELECT sum(amount) AS Total from bill where date between ".$startdate." and ".$endate."";
+$join = "SELECT * FROM bill JOIN company ON bill.`company_idcompany` = company.`idcompany`'";
+$query = "SELECT * from bill where duedate between ".$startdate." and ".$enddate." AND company_idcompany = ".$companyid."";
+
+$querydate = "SELECT * from bill where duedate  between ".$startdate." and ".$enddate."";
+$querytotalunpaid = "SELECT sum(amount) AS Total from bill where duedate between '".$startdate."' and '".$enddate."' AND paid = 0";
+$querytotalpaid = "SELECT sum(amount) AS Total from bill where duedate between ".$startdate." and ".$enddate." AND paid = 1";
+
 $queryheading = 'select name from company where idcompany = '.$companyid.'';
 $total = "";
 
 
 $result = mysql_query($query,$mysql);
 $result2 = mysql_query($query,$mysql);
+$resultjoin = mysql_query($join,$mysql);
 $resultdate = mysql_query($date,$mysql);
 
 $resultheading = mysql_query($queryheading,$mysql);
 $resulttotalunpaid = mysql_query($querytotalunpaid,$mysql);
 $resulttotalpaid = mysql_query($querytotalpaid,$mysql);
+
+
 ?>
 
 <!DOCTYPE html>
@@ -51,19 +54,19 @@ $resulttotalpaid = mysql_query($querytotalpaid,$mysql);
       <a href="index.html"><button type="button" class="btn btn-primary btn-lg home-button">HOME</button></a>
       <div class="container">
         <div class="total-paid">
-            <h4>Total Unpaid Amount: $ <?php while($rowtotalunpaid = mysql_fetch_assoc($resulttotalunpaid) && $row['paid'] == '0'){ 
+            <h4>Total Unpaid Amount: $ <?php while($rowtotalunpaid = mysql_fetch_assoc($resulttotalunpaid)){ 
 
                 echo $rowtotalunpaid['Total']; 
 
         } ?></h4>
-        <h4>Total Paid Amount: $ <?php while($rowtotalpaid = mysql_fetch_assoc($resulttotalpaid) && $row['paid'] == '1'){ 
+        <h4>Total Paid Amount: $ <?php while($rowtotalpaid = mysql_fetch_assoc($resulttotalpaid)){ 
 
            echo $rowtotalpaid['Total']; 
 
     } ?></h4>
 </div>
 <h1 class="bills-title paid-title"><?php 
-    while($rowheading = mysql_fetch_assoc($date)){ 
+    while($rowheading = mysql_fetch_assoc($resultdate)){ 
         echo "Calculate"; 
     }
     ?></h1>
@@ -137,7 +140,6 @@ $resulttotalpaid = mysql_query($querytotalpaid,$mysql);
             </table>
         </div>
 
-        <?php } ?>
 
 
 

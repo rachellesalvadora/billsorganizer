@@ -37,7 +37,7 @@ $success = $_GET['success'];
     <div class="container">
     <h1 class="bills-title">Calculate</h1>
       <div class="calculate-form">
-      <form class="form-horizontal" action="calculate.php">
+      <form class="form-horizontal" action="calculate.php" method="post">
         <div class="form-group">
           <label for="startdate" class="col-sm-5 control-label">Start Date:</label>
         <div class="col-sm-6">
@@ -61,7 +61,7 @@ $success = $_GET['success'];
                    <?php 
                    while ($row = mysql_fetch_assoc($resultcompany)) {
                     ?>
-                    <option value="<?php echo $row['paid']; ?>" required>
+                    <option value="<?php echo $row['idcompany']; ?>">
                       <?php
                       if ($row)
                       echo $row['name'];

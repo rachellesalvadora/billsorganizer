@@ -1,5 +1,6 @@
 <?php
-include_once('db.php');
+include_once('includes.php');
+
 
 $companyid = $_POST['companyid'];
 
@@ -126,6 +127,7 @@ $resulttotalpaid = mysql_query($querytotalpaid,$mysql);
                 </tbody>
             </table>
         </div>
+
 
 
 
