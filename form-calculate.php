@@ -57,11 +57,13 @@ $success = $_GET['success'];
         <div class="form-group">
           <label for="company" class="col-sm-5 control-label">Company:</label>
         <div class="col-sm-6">
-          <select name="companyid" class="select-company-name">
+          <select name="companyid" class="select-company-name" >
+                
                    <?php 
                    while ($row = mysql_fetch_assoc($resultcompany)) {
                     ?>
-                    <option value="<?php echo $row['idcompany']; ?>">
+
+                    <option value="<?php echo $row['idcompany']; ?>" >
                       <?php
                       if ($row)
                       echo $row['name'];

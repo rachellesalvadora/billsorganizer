@@ -2,16 +2,16 @@
 include_once('includes.php');
 
 
-echo $companyid = $_POST['companyid'];
+$companyid = $_POST['companyid'];
 $startdate = $_POST['startdate'];
 $enddate = $_POST['enddate'];
 
 $join = "SELECT * FROM bill JOIN company ON bill.`company_idcompany` = company.`idcompany`'";
-$query = "SELECT * from bill where duedate between ".$startdate." and ".$enddate." AND company_idcompany = ".$companyid."";
+$query = "SELECT * from bill JOIN company ON bill.`company_idcompany` = company.`idcompany` where duedate between '".$startdate."' and '".$enddate."' AND company_idcompany = ".$companyid."";
 
 $querydate = "SELECT * from bill where duedate  between ".$startdate." and ".$enddate."";
-$querytotalunpaid = "SELECT sum(amount) AS Total from bill where duedate between '".$startdate."' and '".$enddate."' AND paid = 0";
-$querytotalpaid = "SELECT sum(amount) AS Total from bill where duedate between ".$startdate." and ".$enddate." AND paid = 1";
+$querytotalunpaid = "SELECT sum(amount) AS Total from bill where duedate between '".$startdate."' and '".$enddate."' AND company_idcompany = ".$companyid." AND paid = 0";
+$querytotalpaid = "SELECT sum(amount) AS Total from bill where duedate between '".$startdate."' and '".$enddate."'  AND company_idcompany = ".$companyid." AND paid = 1";
 
 $queryheading = 'select name from company where idcompany = '.$companyid.'';
 $total = "";
@@ -79,6 +79,7 @@ $resulttotalpaid = mysql_query($querytotalpaid,$mysql);
             <tr>
                 <th>Day</th>
                 <th>Type</th>
+                <th>Company</th>
                 <th>Amount</th>
             </tr>
         </thead>
@@ -97,6 +98,9 @@ $resulttotalpaid = mysql_query($querytotalpaid,$mysql);
                         echo date("m/d/y", $datephp);
                         ?></td>
                         <td><?php echo $row['type']; ?></td>
+                        <td><?php
+                    echo $row['name'];
+                    ?></td>
                         <td><?php echo $row['amount']; ?></td>
                         <td class="edit-button"><button class="btn btn-default edit-button-table" type="submit">Edit</button></td>
                         
@@ -113,6 +117,7 @@ $resulttotalpaid = mysql_query($querytotalpaid,$mysql);
             <tr>
                 <th>Day</th>
                 <th>Type</th>
+                <th>Company</th>
                 <th>Amount</th> 
             </tr>
         </thead>
@@ -131,6 +136,9 @@ $resulttotalpaid = mysql_query($querytotalpaid,$mysql);
                         echo date("m/d/y", $datephp);
                         ?></td>
                         <td><?php echo $row3['type']; ?></td>
+                        <td><?php
+                    echo $row['name'];
+                    ?></td>
                         <td><?php echo $row3['amount']; ?></td>
                         <td class="edit-button"><button class="btn btn-default edit-button-table" type="submit">Edit</button></td>
                         
