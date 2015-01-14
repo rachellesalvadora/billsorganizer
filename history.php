@@ -4,8 +4,7 @@ include_once('db.php');
 //query
 
 //new query with all details
-
-$query = 'SELECT * from bill JOIN company ON bill.`company_idcompany` = company.`idcompany`';
+$query = 'SELECT * from bill JOIN company ON bill.`company_idcompany` = company.`idcompany` ORDER BY bill.`duedate` DESC';
 
 $result = mysql_query($query);
 
