@@ -17,6 +17,8 @@ $resultecho2 = mysql_query($echo,$mysql);
 
 
 
+$success = 0;
+$success = $_GET['success'];
 ?>
 
 <!DOCTYPE html>
@@ -51,6 +53,10 @@ $resultecho2 = mysql_query($echo,$mysql);
         } ?></h4>
     </div>
     <h1 class="bills-title paid-title">Paid</h1>
+
+    <?php if ($success == 1) { ?>
+        <div class="company-content alert alert-success" role="alert">Successfully added!</div>
+        <?php } ?>
 
     <div class="table-responsive">
   <table class="table table-hover">
@@ -121,7 +127,7 @@ $resultecho2 = mysql_query($echo,$mysql);
                 <input type="number" min="0.00" step="1.0" max="99999999" name="amount" class="amount-input">
                 </input>
         </div>
-        
+
         </td> 
         
 
