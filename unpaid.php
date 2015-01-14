@@ -12,7 +12,12 @@ $unpaid = 'SELECT * from bill JOIN company ON bill.`company_idcompany` = company
 $result2 = mysql_query($unpaid);
 
 
+$echo = "SELECT * from bill JOIN company ON bill.`company_idcompany` = company.`idcompany`";
+$resultecho = mysql_query($echo,$mysql);
+$resultecho2 = mysql_query($echo,$mysql);
 
+$success = 0;
+$success = $_GET['success'];
 ?>
 
 <!DOCTYPE html>
@@ -48,6 +53,10 @@ $result2 = mysql_query($unpaid);
     </div>
     <h1 class="bills-title paid-title">Unpaid</h1>
 
+    <?php if ($success == 1) { ?>
+        <div class="company-content alert alert-success" role="alert">Successfully added!</div>
+        <?php } ?>
+
     <div class="table-responsive">
   <table class="table table-hover">
     <thead>
@@ -60,13 +69,13 @@ $result2 = mysql_query($unpaid);
     </thead>
     <tbody>
     <tr>
-    <form class="form-horizontal" action="addpaid.php" method="post">
+    <form class="form-horizontal" action="addunpaid.php" method="post">
         <td>
         <div class="form-group">
                 <label for="date" ></label>
 
                 
-                  <input name="date" type="date" class="addnew"></input>
+                  <input name="date" type="date" class="addnew" required></input>
         </div>
         </td>
 
@@ -74,7 +83,7 @@ $result2 = mysql_query($unpaid);
         <div class="form-group">
                 <label for="type"></label>
 
-                <select name="type" class="addnew">
+                <select name="type" class="addnew" required>
                    <?php 
                    while ($row = mysql_fetch_assoc($resultecho)) {
                     ?>
@@ -93,7 +102,7 @@ $result2 = mysql_query($unpaid);
         <div class="form-group">
                 <label for="type"></label>
 
-                <select name="companyid" class="addnew">
+                <select name="companyid" class="addnew" required>
                    <?php 
                    while ($row = mysql_fetch_assoc($resultecho2)) {
                     ?>
@@ -114,7 +123,7 @@ $result2 = mysql_query($unpaid);
         <div class="form-group">
                 <label for="amount" ></label>
                 $
-                <input type="number" min="0.00" step="1.0" max="99999999" name="amount" class="amount-input">
+                <input required type="number" min="0.00" step="1.0" max="99999999" name="amount" class="amount-input">
                 </input>
         </div>
         </td> 

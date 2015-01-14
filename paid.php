@@ -76,7 +76,7 @@ $success = $_GET['success'];
                 <label for="date" ></label>
 
                 
-                  <input name="date" type="date" class="addnew"></input>
+                  <input name="date" type="date" class="addnew" required></input>
         </div>
         </td>
 
@@ -84,7 +84,7 @@ $success = $_GET['success'];
         <div class="form-group">
                 <label for="type"></label>
 
-                <select name="type" class="addnew">
+                <select name="type" class="addnew" required>
                    <?php 
                    while ($row = mysql_fetch_assoc($resultecho)) {
                     ?>
@@ -103,7 +103,7 @@ $success = $_GET['success'];
         <div class="form-group">
                 <label for="type"></label>
 
-                <select name="companyid" class="addnew">
+                <select name="companyid" class="addnew" required>
                    <?php 
                    while ($row = mysql_fetch_assoc($resultecho2)) {
                     ?>
@@ -124,7 +124,7 @@ $success = $_GET['success'];
         <div class="form-group">
                 <label for="amount" ></label>
                 $
-                <input type="number" min="0.00" step="1.0" max="99999999" name="amount" class="amount-input">
+                <input required type="number" min="0.00" step="1.0" max="99999999" name="amount" class="amount-input">
                 </input>
         </div>
 
