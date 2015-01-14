@@ -1,3 +1,22 @@
+<?php
+include_once('db.php');
+//string
+$amount = 'SELECT sum(amount) AS Total FROM bill WHERE paid = 0';
+
+//query
+$result = mysql_query($amount);
+
+//new query with all details
+
+$unpaid = 'SELECT * from bill JOIN company ON bill.`company_idcompany` = company.`idcompany` WHERE paid = 0';
+$result2 = mysql_query($unpaid);
+
+$echo = "SELECT * from bill JOIN company ON bill.`company_idcompany` = company.`idcompany`";
+$resultecho = mysql_query($echo,$mysql);
+$resultecho2 = mysql_query($echo,$mysql);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -38,34 +57,93 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>01/12/2015</td>
-            <td>Tax</td>
-            <td>Gov.au</td>
-            <td>$200.00</td>
-            <td class="edit-button"><button class="btn btn-default" type="submit">Button</button></td>
+    <tr>
+    <form class="form-horizontal" action="addpaid.php" method="post">
+        <td>
+        <div class="form-group">
+                <label for="date" ></label>
+
+                
+                  <input name="date" type="date" class="addnew"></input>
+        </div>
+        </td>
+
+        <td>
+        <div class="form-group">
+                <label for="type"></label>
+
+                <select name="type" class="addnew">
+                   <?php 
+                   while ($row = mysql_fetch_assoc($resultecho)) {
+                    ?>
+                    <option value="<?php echo $row['type']; ?>">
+
+                      <?php
+                      echo $row['type'];
+                      ?>
+                    </option>
+                    <?php } ?>
+                  </select>
+        </div>
+        </td>
+
+        <td>
+        <div class="form-group">
+                <label for="type"></label>
+
+                <select name="companyid" class="addnew">
+                   <?php 
+                   while ($row = mysql_fetch_assoc($resultecho2)) {
+                    ?>
+                    <option value="<?php echo $row['idcompany']; ?>">
+
+                      <?php
+                      echo $row['name'];
+                      ?>
+                    </option>
+                    <?php } ?>
+                  </select>
+        </div>
+        </td>
+
+        <td>
+        
+
+        <div class="form-group">
+                <label for="amount" ></label>
+                $
+                <input type="number" min="0.00" step="1.0" max="99999999" name="amount" class="amount-input">
+                </input>
+        </div>
+        </td> 
+        
+
+        <td class="edit-button"><button class="btn btn-default edit-button-table" type="submit">Add</button></td> 
+
+        </form>  
+
         </tr>
-        <tr>
-            <td>01/12/2015</td>
-            <td>Tax</td>
-            <td>Gov.au</td>
-            <td>$200.00</td>
-            <td class="edit-button"><button class="btn btn-default" type="submit">Button</button></td>
-        </tr>
-        <tr>
-            <td>01/12/2015</td>
-            <td>Tax</td>
-            <td>Gov.au</td>
-            <td>$200.00</td>
-            <td class="edit-button"><button class="btn btn-default" type="submit">Button</button></td>
-        </tr>
-        <tr>
-            <td>01/12/2015</td>
-            <td>Tax</td>
-            <td>Gov.au</td>
-            <td>$200.00</td>
-            <td class="edit-button"><button class="btn btn-default" type="submit">Button</button></td>
-        </tr>
+        <?php
+    while ($row = mysql_fetch_assoc($result2)) {
+        ?>
+            <tr>
+                <td><?php 
+                    $mysqldate = $row['duedate'];
+                    $datephp = strtotime($mysqldate);
+                        echo date("m/d/y", $datephp);
+                    ?></td>
+                    <td><?php
+                    echo $row['type'];
+                    ?></td>
+                    <td><?php
+                    echo $row['name'];
+                    ?></td>
+                    <td>$ <?php 
+                    echo $row['amount']; ?>
+                    </td>
+                    <td class="edit-button"><button class="btn btn-default edit-button-table" type="submit">Edit</button></td>
+                    </tr>
+                    <?php } ?>
     </tbody>
   </table>
 </div>

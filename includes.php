@@ -1,7 +1,7 @@
 <?php
 
-require 'db.php';
+include 'db.php';
 
-require 'functions.php';
+include 'functions.php';
 
 ?>

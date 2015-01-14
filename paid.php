@@ -78,7 +78,7 @@ $resultecho2 = mysql_query($echo,$mysql);
         <div class="form-group">
                 <label for="type"></label>
 
-                <select name="companyid" class="addnew">
+                <select name="type" class="addnew">
                    <?php 
                    while ($row = mysql_fetch_assoc($resultecho)) {
                     ?>
@@ -121,6 +121,7 @@ $resultecho2 = mysql_query($echo,$mysql);
                 <input type="number" min="0.00" step="1.0" max="99999999" name="amount" class="amount-input">
                 </input>
         </div>
+        
         </td> 
         
 

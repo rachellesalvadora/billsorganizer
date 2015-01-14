@@ -59,6 +59,72 @@ $result2 = mysql_query($unpaid);
         </tr>
     </thead>
     <tbody>
+    <tr>
+    <form class="form-horizontal" action="addpaid.php" method="post">
+        <td>
+        <div class="form-group">
+                <label for="date" ></label>
+
+                
+                  <input name="date" type="date" class="addnew"></input>
+        </div>
+        </td>
+
+        <td>
+        <div class="form-group">
+                <label for="type"></label>
+
+                <select name="type" class="addnew">
+                   <?php 
+                   while ($row = mysql_fetch_assoc($resultecho)) {
+                    ?>
+                    <option value="<?php echo $row['type']; ?>">
+
+                      <?php
+                      echo $row['type'];
+                      ?>
+                    </option>
+                    <?php } ?>
+                  </select>
+        </div>
+        </td>
+
+        <td>
+        <div class="form-group">
+                <label for="type"></label>
+
+                <select name="companyid" class="addnew">
+                   <?php 
+                   while ($row = mysql_fetch_assoc($resultecho2)) {
+                    ?>
+                    <option value="<?php echo $row['idcompany']; ?>">
+
+                      <?php
+                      echo $row['name'];
+                      ?>
+                    </option>
+                    <?php } ?>
+                  </select>
+        </div>
+        </td>
+
+        <td>
+        
+
+        <div class="form-group">
+                <label for="amount" ></label>
+                $
+                <input type="number" min="0.00" step="1.0" max="99999999" name="amount" class="amount-input">
+                </input>
+        </div>
+        </td> 
+        
+
+        <td class="edit-button"><button class="btn btn-default edit-button-table" type="submit">Add</button></td> 
+
+        </form>  
+
+        </tr>
         <?php
     while ($row = mysql_fetch_assoc($result2)) {
         ?>

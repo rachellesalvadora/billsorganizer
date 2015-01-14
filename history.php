@@ -9,8 +9,6 @@ $query = 'SELECT * from bill JOIN company ON bill.`company_idcompany` = company.
 
 $result = mysql_query($query);
 
-
-
 ?>
 
 <!DOCTYPE html>
