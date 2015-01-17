@@ -71,7 +71,7 @@ $result = mysql_query($query);
                       ?>Paid <?php } else { ?> 
                       Unpaid <?php } ?>
                       </td>
-                    <td class="edit-button"><button class="btn btn-default edit-button-table" type="submit">Edit</button></td>
+                    <td class="edit-button"><form action='detailform.php' method='POST'><input type='hidden' name='tempId' value='".$row["pId"]."'/><input type='submit' name='submit-btn' value='View/Update Details' /></form></td></td>
                         
                     </tr>
                     <?php } ?>
