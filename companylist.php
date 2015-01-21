@@ -71,9 +71,7 @@ $resulttotalpaid = mysql_query($querytotalpaid,$mysql);
             </tr>
         </thead>
         <tbody>
-            <?php
-    while ($row = mysql_fetch_assoc($result)) {
-        ?>
+            
             <?php
                 if ($row['paid'] == 0) {
                 ?>
